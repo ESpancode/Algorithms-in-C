@@ -1,32 +1,323 @@
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+Floating Point Numbers
 
-# Precompiled Headers
-*.gch
-*.pch
+Sorting of Empty Lists
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+#include <iostream>
+#include <list>
+using namespace std;
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+int main ()
+{
+  list<int> elist; 
+  int sum (0); // 0 is the int used for the list<int>elist
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+  for (int a=1;a<=500;a++) elist.push_back(a); //1 is pushed into the list
 
-# Debug files
-*.dSYM/
+  while (!elist.empty()) // the while loop allows it to become empty
+  {
+     sum += elist.front(); // sum is then added in front of elist 
+     elist.pop_front();
+  }
+
+  cout << "the total is: " << sum << endl; // the total would be the sum
+  
+  return 0;
+}
+
+
+Sorting 1 or 2 elements
+
+#include <iostream>
+#include <list>
+using namespace std;
+
+int main ()
+{
+  unsigned int a;
+  list<unsigned int> delist;
+  list<unsigned int>::iterator e1,e2; //I have split the elements in 2 
+
+  // set some values:
+  for (a=2; a<100; a++) delist.push_back(a*100);
+
+                              
+ e1 = e2 = delist.begin(); //Element 1 and 2 would equal to the delist
+  advance (e2,7);           
+  ++e1;                     
+
+  e1 = delist.erase (e1);// Element 1= delist erase   
+                              
+
+  e2 = delist.erase (e2);// Element 2= delist erase  
+                             
+
+  ++e1; // Element 1 is incremented                      
+  --e2; // Element 2 is decremented                     
+  delist.erase (e1,e2);     // delist.erase contains both elements  
+                              
+
+  cout << "delist contains:";
+  for (e1=delist.begin(); e1!=delist.end(); ++e1)
+    cout << " " << *e1; //elements would compiled out to screen
+  cout << endl;
+
+  return 0;
+}
+
+
+Sorting lists of general numbers in an element
+
+#include <iostream>
+using namespace std;
+
+template <typename T> // T is substituted by the type of the variables actually passed
+T Minimum (T v1, T v2, T v3, T v4);
+
+int main()
+{
+ vMinimum = v1;
+
+ if (v1 = 10);                         // The size of v1 would equal to 10 and the length would needed to be measured
+ std::cout << sizeof array(v1) <<'\n';
+ std::cout << length (v1) << '\n';
+}
+
+
+Sorting lists where elements are the same
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+bool mypredication (int a, int b) {
+  return (a==b);
+}
+
+int main () {
+
+  int myints[] = {200,400,600,800,1000}; //  myints are 200,400,600,800,1000, which was used from main code
+  vector<int>myvector (myints,myints+4); // myvector would be the exact copy of what I have used for myints
+
+  
+  if (equal (myvector.begin(), myvector.end(), myints)) // Comparing all myvectors and myints
+    cout << "All content is equal." << endl;
+  else
+    cout << "All content is different." << endl;
+
+  myvector[2]=100; // myvector elements are 200,400,600,800,1000
+
+  
+  if (equal (myvector.begin(), myvector.end(), myints, mypredication)) // comparing my predictions with vectors and ints
+    cout << "All content is equal." << endl;
+  else
+    cout << "All content is different." << endl;
+  
+  return 0;
+}
+
+
+Sorting list of elements in infinity or minus infinity
+
+#include <iostream>
+#include <limits> // numeric limits header for understand if its infinty or minus infinity
+using namespace std;
+
+int main()
+{
+	cout << boolalpha; // bool may help to find infinity or minus infinity within my code
+	cout << "What is my Minimum value for int: " << numeric_limits<int>::min() << endl; // Question its limits to find an answer.
+	cout << "What is my Maximum value for int: " << numeric_limits<int>::max() << endl;
+	cout << "Is the int signed: " << numeric_limit<int>::is_signed << endl;
+	cout << "Are there any no sign bits: " << numeric_limits<int>::digits << endl;
+	cout << "Does the int have infinity: " << numeric_limits<int>:: has_infinity << endl;
+	return 0;
+}
+
+
+Sorting list of elements are NaN (Not a Number)
+
+#include<iostream>
+
+using namespace std;
+
+bool is_item(double i)
+{
+	if(i!=i)
+		return 1; // 1 would represent true
+	else
+		return 0; // 0 would represent false
+}
+
+int main()
+{
+	double i;
+
+	cout<<"please enter a number "; // the user would enter a number
+	cin>>i;
+
+	if(is_item(i))
+	{
+		cout<<"true i is NAN \n";
+	}
+	else
+	{
+		cout<<"false i is a num \n";
+	}
+
+	return 0;
+
+}
+
+
+Measuring Time
+
+#include "StdAfx.h"
+#include<iostream>
+using namespace std;
+
+int count = 0;
+const int INPUT_SIZE = 10;
+
+
+class sort
+{
+public:
+void print(int*input, int numElements)
+{
+	for(int a = 0; a<numElements; a++)
+		cout<<input[a]<<" ";
+	cout<<endl;
+}
+
+void mybubble(int *input, int numElements)
+{
+	bool swap = false;
+	int transfer = 0;
+	do
+	{
+		swap=false;
+		for(int a = 0; a<numElements-1; a++)
+		{
+			if (input[a]<input[a+1])
+			{ 
+			  transfer = input[a];
+			  input [a] = input[a+1];
+			  input[a+1] = transfer;
+			  swap=true;
+			}
+		}
+	}
+	while (swap==true);
+}
+void print(float*input, int numElements)
+{
+	for(int a = 0; a<numElements; a++)
+		cout<<input[a]<<" ";
+	cout<<endl;
+}
+
+// I have looped the my program once, to test if it can loop
+
+void mybubble(float *input, int numElements)
+{
+	bool swap = false;
+	float transfer = 0;
+	do
+	{
+		swap=false;
+		for(int a = 0; a<numElements-1; a++)
+		{
+			if (input[a]<input[a+1])
+			{ 
+			  transfer = input[a];
+			  input [a] = input[a+1];
+			  input[a+1] = transfer;
+			  swap=true;
+			}
+		}
+	}
+	While (swap==true);
+}
+};
+
+int main()
+{
+	char s [100];
+	int input[INPUT_SIZE] = {500, 700, 800, 100, 300, 200, 900, 400, 1000, 600};
+	float finput[INPUT_SIZE] = {5.500, 7.700, 8.800, 1.100, 3.300, 2.200, 900, 400, 1000, 600};
+	
+	sort sortvar;
+
+	cout << "Input: ";
+	sortvar.print(input, sizeof (input)/sizeof (int));
+	sortvar.mybubble(input, sizeof (input)/sizeof (int));
+	cout << "Output: ";
+	sortvar.print(input, sizeof (input)/sizeof (int));
+
+	cout << "Input: ";
+	sortvar.print(finput, sizeof (input)/sizeof (float));
+	sortvar.mybubble(finput, sizeof (input)/sizeof (float));
+	cout << "Output: ";
+	sortvar.print(finput, sizeof (input)/sizeof (float));
+
+	cin >> s;
+	return 0;
+}
+
+
+Using operation system to record execution time of a program
+
+#include <iostream>
+#include <time.h>
+using namespace std;
+
+int main()
+
+{
+
+double start = clock(); // this will only print out the start time, which is defaulted as 0
+
+int input[] = {200}; // the input size
+
+
+cout << "the time executed in ms = " << clock() - start << endl;
+
+return 0;
+
+}
+
+
+Sort lists of pseudorandom data or data obtained from the World Wide Web
+
+#include <iostream> 
+#include <ctime> 
+ 
+using namespace std;
+ 
+int main() 
+{ 
+    srand((unsigned)time(0)); // I have used a standrad random number, which is zero
+    int random_integer; // this is the random number used to default within the program
+    int lowest=100, highest=1000; // the highest and lowest numbers can be linked to elements
+    int range=(highest-lowest)+2; // add 2 to the answer of highest value by the lowest in the array
+    for(int index=0; index<40; index++){ // the index number would need to be less than 40, as 0 is defaulted
+        random_integer = lowest+int(range*rand()/(RAND_MAX + 2.0)); 
+        cout << random_integer << endl; 
+   } 
+}
+
+
+Use an operating system timer to record the real-world time of the program
+
+#include <iostream>
+#include <complex>
+using namespace std;
+
+int main ()
+{
+  complex<double> mycomplex (300.0,10.0); // this show that it to 300 ms to be my real world time measurement
+
+  cout << "Real Time Measurement: " << mycomplex.real() << endl; // This would print out my real time measurement on the screen
+
+  return 0;
+} 
